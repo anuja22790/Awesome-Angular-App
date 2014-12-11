@@ -1,0 +1,88 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/* ---------- ERIC MEYER'S RESET CSS ---------- */
+/* ---------- http://meyerweb.com/eric/tools/css/reset/ ---------- */
+
+@import url(http://meyerweb.com/eric/tools/css/reset/reset.css);
+
+
+
+/* ---------- GENERAL ---------- */
+
+body {
+    background: #D3D3D3;
+    color: #000;
+    font: 100%/1.5em "Varela Round", sans-serif;
+    margin: 0;
+}
+
+input {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    -webkit-appearance: none;
+
+}
+
+/* ---------- LOGIN ---------- */
+
+#login {
+    margin: 20px auto;
+    width: 470px;
+    box-shadow: 10px 10px 5px #CCC8C8;
+}
+
+#login h2 {
+    background: #00CED1;
+    border-radius: 10px 10px 0 0;
+    color: #fff;
+    font-size: 28px;
+    padding: 20px 26px;
+}
+
+
+
+#login fieldset {
+    background: #fff;
+    border-radius: 0 0 10px 10px;
+    padding: 20px 56px;
+}
+
+#login fieldset p {
+    color: #777;
+    margin-bottom: 14px;
+}
+
+#login fieldset p:last-child {
+    margin-bottom: 0;
+}
+
+#login fieldset input {
+    border-radius: 3px;
+}
+
+#login fieldset input[type="email"], #login fieldset input[type="password"] {
+    background: #eee;
+    color: #777;
+    padding: 10px 10px;
+    width: 328px;
+    box-shadow: 3px 5px 6px 1px #CCC8C8 inset
+}
+
+#login fieldset input[type="submit"] {
+    background: #FF8C00;
+    color: #fff;
+    display: block;
+    margin: 0 10px;
+    padding: 4px 0;
+    width: 100px;
+    float: right;
+}
+
+#login fieldset input[type="submit"]:hover {
+    background: #FF8502;
+}
