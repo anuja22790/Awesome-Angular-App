@@ -1,0 +1,204 @@
+<div class="page-head">
+    <h2>Create new user </h2>
+</div>
+
+
+<div class="cl-mcont">
+<form name="userForm" id="userForm" class="form-horizontal" ng-submit="onCreate()">
+
+<div class="block-flat userDetails">
+    <div class="header">
+        <h3>User Details</h3>
+    </div>
+
+    <div class="content">
+        <div class="row">
+
+            <div class="col-sm-6">
+
+                <div class="form-group"
+                     ng-class="{ 'has-error' : userForm.id.$invalid && !userForm.id.$pristine }">
+                    <label class="col-sm-3 control-label">Employee ID</label>
+
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control id" name="id" ng-readonly="true"
+                               ng-model="user.id" placeholder="Employee ID" required>
+
+
+                        <p ng-show="userForm.id.$invalid &&!userForm.id.$pristine"
+                           class="help-block">Employee ID is required.</p>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{ 'has-error' : userForm.firstName.$invalid && !userForm.firstName.$pristine }">
+                    <label class="col-sm-3 control-label">First Name</label>
+
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control firstName" name="firstName"
+                               ng-model="user.firstName" placeholder="First Name" ng-pattern="/^[a-z ,.'-]+$/i" required
+                               autofocus>
+
+                        <p ng-show="userForm.firstName.$invalid &&!userForm.firstName.$pristine"
+                           class="help-block">First Name is required and should not have numbers.</p>
+                    </div>
+                </div>
+
+
+                <div class="form-group"
+                     ng-class="{ 'has-error' : userForm.council.$invalid && !userForm.council.$pristine }">
+                    <label class="col-sm-3 control-label">Email</label>
+
+                    <div class="col-sm-6">
+                        <select name="council" ng-model="user.council"
+                                ng-options="organization.name for organization in receivingOrganizationList"
+                                class="form-control council" required="required" ng-change="onChangeCouncil()">
+                            <option value="" disabled selected>Email id</option>
+                        </select>
+
+                        <p ng-show="userForm.council.$invalid && !userForm.council.$pristine"
+                           class="help-block">email id is required</p>
+                    </div>
+                </div>
+
+<!--
+                <div class="form-group"
+                     ng-class="{ 'has-error' : userForm.roles.$invalid && !userForm.roles.$pristine }">
+                    <label class="col-sm-3 control-label">Role</label>
+
+                    <div class="col-sm-6">
+                        <select name="roles" ng-model="roles"
+                                ng-options="role as role.label for role in roleList" class="form-control roles"
+                                required="required">
+                            <option value="" disabled selected>Select role</option>
+                        </select>
+
+                        <p ng-show="userForm.roles.$invalid && !userForm.roles.$pristine"
+                           class="help-block">Role is required</p>
+                    </div>
+                </div>-->
+
+
+            </div>
+
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Created On</label>
+
+                    <div class="col-sm-6">
+                        <input name="createdOn" type="text" class="form-control createdOn" ng-readonly="true"
+                               ng-model="user.createdOn" required>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine }">
+                    <label class="col-sm-3 control-label">Last Name</label>
+
+                    <div class="col-sm-6">
+                        <input type="text" name="lastName" class="form-control lastName"
+                               ng-model="user.lastName"
+                               placeholder="Last Name" ng-pattern="/^[a-z ,.'-]+$/i" required>
+
+                        <p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine"
+                           class="help-block">Last Name is required and should not have numbers</p>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : careForm.contactorMobileNo.$invalid && careForm.contactorMobileNo.$dirty }">
+                    <label class="col-sm-3 control-label">Mobile no</label>
+                    <div class="col-sm-6">
+                        <input type="text" ng-readonly="readOnly" name="contactorMobileNo" class="form-control" ng-model="contact.contactor.mobileNo" placeholder="Optional"  ng-model-options="{ updateOn: 'blur'}" ng-pattern="/((\+{0,1}[1-9]{1,3})|([0-9]{2,5})){0,1}[ ]{0,1}(\(0\)){0,1}[ ]{0,1}[0-9]{4,5}[ ]{0,1}[0-9]{6}/" />
+                        <p ng-show="careForm.contactorMobileNo.$invalid && careForm.contactorMobileNo.$dirty" class="help-block">Please ensure its a valid UK number ex: +44 1111 111111</p>
+                    </div>
+                </div>
+
+         <!--       <div class="form-group"
+                     ng-class="{ 'has-error' : userForm.designation.$invalid && !userForm.designation.$pristine }">
+                    <label class="col-sm-3 control-label">Designation</label>
+
+                    <div class="col-sm-6">
+                        <select name="designation" ng-model="user.designation"
+                                ng-options="designation.name for designation in designationList" class="form-control designation"
+                                required="required">
+                            <option value="" disabled selected>Select designation</option>
+                        </select>
+
+                        <p ng-show="userForm.designation.$invalid && !userForm.designation.$pristine"
+                           class="help-block">Designation required</p>
+                    </div>
+                </div>-->
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="block-flat idPassword">
+    <div class="header">
+        <h3>ID and Password</h3>
+    </div>
+
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-6">
+
+                <div class="form-group"
+                     ng-class="{ 'has-error' : (uniqueUsernameStatus || usernameFormatIncorrect) && !userForm.username.$invalid }">
+                    <label class="col-sm-3 control-label">User Id</label>
+
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control username" name="username"
+                               ng-model="user.username" placeholder="User Id" ng-blur="uniqueUsername()" required>
+                        <!--<p ng-show="userForm.username.$invalid &&!userForm.username.$pristine"
+                           class="help-block">User Id is required.</p>-->
+                        <p ng-show="uniqueUsernameStatus" class="help-block">Sorry username not available .Please use a
+                            different user name</p>
+                        <p ng-show=" usernameFormatIncorrect && userForm.username.$dirty" class="help-block">Sorry Username format is incorrect it should be in ex: benjiman@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
+                    <label class="col-sm-3 control-label">New Password</label>
+
+                    <div class="col-sm-6">
+                        <input type="password" class="form-control password" name="password"
+                               ng-model="user.password" placeholder="Password" ng-pattern="/[A-Za-z0-9]$/" required>
+
+                        <p ng-show="userForm.password.$invalid &&!userForm.password.$pristine"
+                           class="help-block">Password is required and should be alpha numeric</p>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{ 'has-error' : passwordMatchError && !userForm.confirmPassword.$invalid }">
+                    <label class="col-sm-3 control-label">Confirm Password</label>
+
+                    <div class="col-sm-6">
+                        <input type="password" class="form-control confirmPassword" name="confirmPassword" ng-blur="passwordMatch()"
+                               ng-model="confirmPassword" placeholder="Confirm Password" required>
+
+                        <p ng-show="passwordMatchError" class="help-block">Password do not match</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div>
+            <div class="form-actions-container">
+                <button class="btn btn-default" ng-click="onCancel()">Cancel</button>
+                <button class="btn btn-primary"
+                        ng-disabled="userForm.$invalid || uniqueUsernameStatus || passwordMatchError || usernameFormatIncorrect">Create
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+</div>
