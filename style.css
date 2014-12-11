@@ -74,7 +74,7 @@ input {
 }
 
 #login fieldset input[type="submit"] {
-    background: #FF8C00;
+    background: #F0E68C;
     color: #fff;
     display: block;
     margin: 0 10px;
@@ -84,5 +84,5 @@ input {
 }
 
 #login fieldset input[type="submit"]:hover {
-    background: #FF8502;
+    background: #FFA500;
 }
